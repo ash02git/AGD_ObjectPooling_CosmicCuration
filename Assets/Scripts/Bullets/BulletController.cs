@@ -20,6 +20,8 @@ namespace CosmicCuration.Bullets
         {
             bulletView.transform.position = spawnTransform.position;
             bulletView.transform.rotation = spawnTransform.rotation;
+
+            bulletView.gameObject.SetActive(true);
         }
 
         public void UpdateBulletMotion() => bulletView.transform.Translate(Vector2.up * Time.deltaTime * bulletScriptableObject.speed);
@@ -31,7 +33,10 @@ namespace CosmicCuration.Bullets
                 collidedGameObject.GetComponent<IDamageable>().TakeDamage(bulletScriptableObject.damage);
                 GameService.Instance.GetSoundService().PlaySoundEffects(SoundType.BulletHit);
                 GameService.Instance.GetVFXService().PlayVFXAtPosition(VFXType.BulletHitExplosion, bulletView.transform.position);
-                Object.Destroy(bulletView.gameObject);
+                //Object.Destroy(bulletView.gameObject);
+
+                bulletView.gameObject.SetActive(false);
+                GameService.Instance.GetPlayerService().ReturnBulletToPool(this);
             }
         }
     }
