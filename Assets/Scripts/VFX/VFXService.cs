@@ -19,7 +19,7 @@ namespace CosmicCuration.VFX
         {
             VFXView prefabToSpawn = vfxData.Find(item => item.type == type).prefab;
             //VFXController vfxToPlay = new VFXController(prefabToSpawn);
-            VFXController vfxToPlay = vfxPool.GetPowerUp<VFXController>(prefabToSpawn);
+            VFXController vfxToPlay = vfxPool.GetVFX<VFXController>(prefabToSpawn);
             vfxToPlay.Configure(spawnPosition);
         }
 

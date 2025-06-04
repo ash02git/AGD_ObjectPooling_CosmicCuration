@@ -8,9 +8,8 @@ namespace CosmicCuration.VFX
     public class VFXPool : GenericObjectPool<VFXController>
     {
         private VFXView vfxView;
-        public VFXController GetEnemy() => GetItem<VFXController>();
 
-        public VFXController GetPowerUp<T>(VFXView vfxView) where T : VFXController
+        public VFXController GetVFX<T>(VFXView vfxView) where T : VFXController
         {
             this.vfxView = vfxView;
 
